@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+@import 'tailwindcss';
+
+@layer base {
+  body {
+    @apply h-screen max-h-screen w-full bg-[#1C1D3B] antialiased;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
