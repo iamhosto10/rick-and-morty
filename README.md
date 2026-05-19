@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# Rick and Morty Memory Game - Frontend Engineering Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Autor:** Gerardo Andrés Ramírez Ávila | Fullstack Software Engineer
 
-Currently, two official plugins are available:
+**🌐 Despliegue en vivo:** [https://rick-and-morty-seven-woad.vercel.app/](https://rick-and-morty-seven-woad.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Aplicación interactiva de memoria desarrollada con React y TypeScript, consumiendo la API pública de Rick and Morty. Este proyecto fue construido desde cero sin depender de librerías de componentes UI prefabricadas, priorizando una arquitectura escalable, código limpio y una experiencia de usuario fluida.
 
-## React Compiler
+## 🚀 Instrucciones para correr el proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/tu-usuario/rick-morty-memory.git
+   cd rick-morty-memory
+   ```
 
-## Expanding the ESLint configuration
+2. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. **Ejecutar en entorno de desarrollo:**
+   ```bash
+   npm run dev
+   ```
+   La aplicación estará disponible en http://localhost:5173.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧠 Mi enfoque de desarrollo
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+A lo largo de mi trayectoria en el ecosistema JavaScript/TypeScript, he aprendido que la clave para aplicaciones mantenibles es la separación estricta de responsabilidades. Para este desafío, estructuré el proyecto basándome en una arquitectura orientada a features:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Aislamiento de la UI:** Diseño de componentes especializados (como Card, Button, Input) completamente desacoplados de la lógica de negocio.
+- **Lógica encapsulada:** Extracción de la máquina de estados del juego y el consumo de la API hacia Custom Hooks (`useGameEngine`, `useDeck`).
+- **Inmutabilidad y Tipado:** Uso estricto de interfaces de TypeScript para definir contratos claros entre la capa de datos y la vista, asegurando la integridad del estado durante el flujo asíncrono del juego.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Decisiones técnicas y razonamiento detrás
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Sistema de Diseño Propio (Tailwind CSS + Utilidades)
+Dado el requerimiento de no utilizar UI frameworks, opté por construir un sistema de diseño propio utilizando Tailwind CSS. Inspirado en filosofías modernas como la de Shadcn UI, implementé utilidades (`clsx` + `tailwind-merge`) para crear componentes base altamente componibles. Esto me permitió replicar fielmente el diseño provisto en Figma, manejando estados de hover, focus y animaciones 3D puramente mediante clases utilitarias, manteniendo un DOM ligero.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 2. Autenticación Simulada (Context API)
+Para cumplir con el requerimiento de inicio de sesión y manejo de tokens, implementé una solución ligera usando React Context (`AuthContext`) y `sessionStorage`. Esto evita sobreingeniar con herramientas como Redux o Zustand para un estado global pequeño, demostrando a la vez cómo proteger rutas mediante un componente `ProtectedRoute` con `react-router-dom`.
+
+### 3. Motor de Juego y Prevención de Race Conditions
+El núcleo del juego reside en `useGameEngine`. En lugar de dispersar temporizadores (`setTimeout`) en la vista, el hook maneja internamente un estado de bloqueo (`isLocked`). Esto garantiza que el usuario no pueda interactuar con el tablero mientras las cartas se están volteando u ocultando (ya sea el temporizador inicial de 3 segundos o el de 1 segundo de comparación), previniendo comportamientos anómalos o múltiples cartas volteadas simultáneamente.
+
+### 4. Algoritmo de Barajado (Fisher-Yates)
+Para cumplir con la mezcla inicial de las cartas, descarté el uso de un simple `Math.random() - 0.5` con `sort()` por ser ineficiente y predecible. Implementé el algoritmo matemático de Fisher-Yates, garantizando una distribución estadística verdaderamente aleatoria y sin sesgos en el tablero 4x3.
+
