@@ -2,6 +2,8 @@
 
 **Autor:** Gerardo Andrés Ramírez Ávila | Fullstack Software Engineer
 
+**🌐 Despliegue en vivo:** [https://rick-and-morty-seven-woad.vercel.app/](https://rick-and-morty-seven-woad.vercel.app/)
+
 Aplicación interactiva de memoria desarrollada con React y TypeScript, consumiendo la API pública de Rick and Morty. Este proyecto fue construido desde cero sin depender de librerías de componentes UI prefabricadas, priorizando una arquitectura escalable, código limpio y una experiencia de usuario fluida.
 
 ## 🚀 Instrucciones para correr el proyecto
