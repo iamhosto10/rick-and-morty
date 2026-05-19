@@ -1,5 +1,6 @@
 import { type MemoryCard as MemoryCardType } from '@/types/game'
 import { cn } from '@/utils/cn'
+import logo from '/src/assets/reversecard.png'
 
 interface MemoryCardProps {
   card: MemoryCardType
@@ -41,7 +42,7 @@ export const MemoryCard = ({ card, onClick, disabled }: MemoryCardProps) => {
         )}
       >
         <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded-lg border-2 border-[#6EE3E6] bg-[#89F4F6] p-1 backface-hidden sm:rounded-xl sm:p-2">
-          <img src="/src/assets/reversecard.png" alt="Portal" />
+          <img src={logo} alt="Portal" />
         </div>
 
         <div className="absolute inset-0 flex h-full w-full transform-[rotateY(180deg)] flex-col gap-2 overflow-hidden rounded-lg bg-[#FFFFFF] p-4 backface-hidden sm:rounded-xl">

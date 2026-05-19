@@ -6,6 +6,7 @@ import { MemoryCard } from './components/MemoryCard'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { useAuth } from '@/features/auth/AuthContext'
+import logo from '/src/assets/rickymorty.png'
 
 export const GameView = () => {
   const { deck, setDeck, isLoading, error, generateDeck } = useDeck()
@@ -50,11 +51,7 @@ export const GameView = () => {
   return (
     <div className="flex h-full w-full flex-col items-center px-4 pt-8">
       <div className="mb-6 flex flex-col items-center">
-        <img
-          src={'/src/assets/rickymorty.png'}
-          alt="Rick and Morty Logo"
-          className="mb-8 h-35 w-100"
-        />
+        <img src={logo} alt="Rick and Morty Logo" className="mb-8 h-35 w-100" />
         <span className="rounded-full bg-[#D8E054] px-4 py-2 text-[20px] font-bold text-[#000000]">
           Juego de memoria
         </span>

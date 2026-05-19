@@ -4,6 +4,7 @@ import { useAuth } from './AuthContext'
 import { Card } from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
+import logo from '/src/assets/rickymorty.png'
 
 export const LoginView = () => {
   const [username, setUsername] = useState('')
@@ -31,11 +32,7 @@ export const LoginView = () => {
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center px-4">
       <Card className="flex h-164.25 w-153 flex-col items-center gap-11 rounded-[14px] bg-[#FFFAC2] p-8 shadow-lg">
-        <img
-          src={'/src/assets/rickymorty.png'}
-          alt="Rick and Morty Logo"
-          className="mb-8 h-28 w-80"
-        />
+        <img src={logo} alt="Rick and Morty Logo" className="mb-8 h-28 w-80" />
         <form onSubmit={handleSubmit} className="flex w-124.5 flex-col gap-6">
           <Input
             label="Usuario"
