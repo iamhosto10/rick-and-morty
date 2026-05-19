@@ -49,7 +49,7 @@ export const GameView = () => {
   }
 
   return (
-    <div className="flex h-full w-full flex-col items-center px-4 pt-8">
+    <div className="flex h-full min-h-screen w-full flex-col items-center px-4 pt-8">
       <div className="mb-6 flex flex-col items-center">
         <img src={logo} alt="Rick and Morty Logo" className="mb-8 h-35 w-100" />
         <span className="rounded-full bg-[#D8E054] px-4 py-2 text-[20px] font-bold text-[#000000]">
@@ -57,27 +57,27 @@ export const GameView = () => {
         </span>
       </div>
 
-      <Card className="flex h-full w-full max-w-5xl flex-col gap-2 rounded-t-2xl rounded-b-none bg-[#FFFAC2]">
+      <Card className="flex w-full max-w-5xl flex-1 flex-col gap-2 rounded-t-2xl rounded-b-none bg-[#FFFAC2]">
         {gameState === 'finished' && (
-          <div className="flex flex-col items-center justify-center space-y-6 py-12 text-center">
-            <h2 className="text-[48px] font-bold text-[#233A59]">
+          <div className="flex w-3/5 flex-col justify-center space-y-6 self-center py-12 text-center">
+            <h2 className="text-left text-[48px] font-bold text-[#233A59]">
               ¡Felicitaciones!
             </h2>
-            <p className="text-[24px] font-medium text-[#233A59]">
+            <p className="text-left text-[24px] font-medium text-[#233A59]">
               Terminaste el juego con {turns} turnos
             </p>
-            <div className="flex gap-4 pt-4">
+            <div className="flex w-full gap-14 pt-4">
               <Button
                 variant="primary"
                 onClick={handleRestart}
-                className="min-w-30"
+                className="w-full min-w-30"
               >
                 Repetir
               </Button>
               <Button
                 variant="secondary"
                 onClick={handleGoHome}
-                className="min-w-30"
+                className="w-full min-w-30"
               >
                 Inicio
               </Button>
